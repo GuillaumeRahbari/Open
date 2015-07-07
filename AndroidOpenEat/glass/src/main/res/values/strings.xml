@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidOpenEat</string>
+    <string name="title_activity_main_glass">Hello World Immersion</string>
+    <string name="hello_world">Hello world!</string>
+</resources>
