@@ -10,6 +10,7 @@ module.exports = function (grunt) {
 
   // load external tasks
   grunt.loadNpmTasks('grunt-typescript');
+  grunt.loadNpmTasks('grunt-express-server');
 
   var reloadPort = 35729, files;
 
@@ -31,7 +32,7 @@ module.exports = function (grunt) {
           'app.js',
           'routes/*.js'
         ],
-        tasks: ['develop', 'delayed-livereload']
+        tasks: ['develop', 'delayed-livereload','typescript:build']
       },
       js: {
         files: ['public/js/*.js'],
@@ -77,6 +78,25 @@ module.exports = function (grunt) {
           basePath: 'scripts'
         }
       }
+    },
+
+    express: {
+      options: {
+        port: 4000
+      },
+      build: {
+        options: {
+          script: 'build/Backend.js',
+          args: ["loglevel=debug"]
+        }
+      },
+      dist: {
+        options: {
+          script: 'dist/Backend.js',
+          args: ["loglevel=error"],
+          node_env: 'production'
+        }
+      }
     }
 
   });
@@ -102,7 +122,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'develop',
-    'typescript:build',
     'watch'
   ]);
 };
