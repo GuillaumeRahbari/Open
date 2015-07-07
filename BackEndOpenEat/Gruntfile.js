@@ -8,6 +8,9 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
 
+  // load external tasks
+  grunt.loadNpmTasks('grunt-typescript');
+
   var reloadPort = 35729, files;
 
   grunt.initConfig({
@@ -50,7 +53,32 @@ module.exports = function (grunt) {
           livereload: reloadPort
         }
       }
+    },
+
+    typescript: {
+      build: {
+        src: [
+          'scripts/Backend.ts'
+        ],
+        dest: 'build/Backend.js',
+        options: {
+          module: 'commonjs',
+          basePath: 'scripts'
+        }
+      },
+
+      dist: {
+        src: [
+          'scripts/Backend.ts'
+        ],
+        dest: 'dist/Backend.js',
+        options: {
+          module: 'commonjs',
+          basePath: 'scripts'
+        }
+      }
     }
+
   });
 
   grunt.config.requires('watch.server.files');
@@ -74,6 +102,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'develop',
+    'typescript:build',
     'watch'
   ]);
 };
