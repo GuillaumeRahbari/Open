@@ -6,9 +6,10 @@ var pg = require('pg'); // Inclusion de postgresql
 var fs = require('fs'); // Inclusion de file stream.
 
 // Lecture du fichier d'initialisation de la bdd.
-var initdb= fs.readFileSync('init_Database.sql').toString();
+var filedb = __dirname + '/init_Database.sql';
+var initdb = fs.readFileSync(filedb).toString();
 // Lecture du fichier contenant les infos de connexion.
-var connectionString = fs.readFileSync('connection_infos.json');
+var connectionString = fs.readFileSync(__dirname + '/connection_infos.json');
 
 // Connexion pour initialiser la bdd.
 pg.connect(connectionString, function (err, client, done){
@@ -22,6 +23,5 @@ pg.connect(connectionString, function (err, client, done){
       console.log('error: ', err);
       process.exit(1);
     }
-    process.exit(0);
-  });
+  })
 });
