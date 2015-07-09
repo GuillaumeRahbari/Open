@@ -4,14 +4,24 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
 
 
 public class MainMobile extends Activity {
+
+    private TextView texte = null;
+
+    private Button boutonclick = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mobile);
+        changerTexte();
     }
 
     @Override
@@ -34,5 +44,27 @@ public class MainMobile extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Permet de changer le texte quand on clique sur un bouton.
+     */
+    public void changerTexte () {
+        boutonclick = (Button)findViewById(R.id.button);
+
+        boutonclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                texte = (TextView)findViewById(R.id.textView);
+                try {
+                    texte.setText(new ServiceHTTP().execute().get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
