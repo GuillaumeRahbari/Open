@@ -5,23 +5,32 @@
 var pg = require('pg'); // Inclusion de postgresql
 var fs = require('fs'); // Inclusion de file stream.
 
-// Lecture du fichier d'initialisation de la bdd.
-var filedb = __dirname + '/init_Database.sql';
-var initdb = fs.readFileSync(filedb).toString();
-// Lecture du fichier contenant les infos de connexion.
-var connectionString = fs.readFileSync(__dirname + '/connection_infos.json');
+/**
+ * Fonction d'initialisation de la base de donnée PostegreSQL
+ * On utilise pour cela les fichiers :
+ * - connection_infos.json (contenant les informations de connexion à la BDD)
+ * - init_Database.sql (contenant la création de la BDD de base).
+ */
+exports.initialisationBDD = function() {
 
-// Connexion pour initialiser la bdd.
-pg.connect(connectionString, function (err, client, done){
-  if(err){
-    console.log('error: ', err);
-    process.exit(1);
-  }
-  client.query(initdb, function(err){
-    done();
+  // Lecture du fichier contenant la BDD de base.
+  var fileBDD = fs.readFileSync(__dirname + '/init_Database.sql').toString();
+
+  // Lecture du fichier contenant les infos de connexion au format JSON.
+  var connectionJSON = fs.readFileSync(__dirname + '/connection_infos.json');
+
+  // Connexion pour initialiser la bdd.
+  pg.connect(connectionJSON, function (err, client, done){
     if(err){
-      console.log('error: ', err);
-      process.exit(1);
+      return console.log('error fetching client from pool', err);
     }
-  })
-});
+    client.query(fileBDD, function(err, result){
+      done();
+      if(err){
+        return console.log('error running query', err);
+      }
+      console.log(result);
+    })
+  });
+
+};

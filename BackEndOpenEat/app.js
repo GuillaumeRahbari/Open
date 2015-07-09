@@ -2,13 +2,15 @@
 
 var express = require('express');
 var logger = require('morgan'); // Permet de gérer les logs et la coloration des messages.
-var routes = require('./scripts/apiRequests/routes');
-require('./scripts/models/database');
+var router = require('./scripts/apiRequests/routes');
+var database = require('./scripts/models/database');
 var app = express();
 
 app.use(logger('dev'));
 
-app.use('/',routes);
+database.initialisationBDD();
+
+app.use('/',router);
 
 var server = app.listen(3000, function () {
 

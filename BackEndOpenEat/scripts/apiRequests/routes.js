@@ -3,15 +3,18 @@
  */
 
 var express = require('express');
-var route = express.Router();
+// Création d'un routeur
+var router = express.Router();
 
-route.get('/', function (req, res) {
+// La route pour '/'
+router.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-route.use(function(req, res, next){
+// La route lorsqu'on a pas trouvé la page (404 page not found).
+router.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');
   res.status(404).send('Page introuvable !');
 });
 
-module.exports = route;
+module.exports = router;

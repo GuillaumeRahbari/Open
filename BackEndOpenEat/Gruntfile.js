@@ -24,15 +24,10 @@ module.exports = function (grunt) {
       },
       server: {
         files: [
-          'app.js'
+          'app.js',
+          'scripts/**/*.js'
         ],
         tasks: ['develop', 'delayed-livereload']
-      },
-      js: {
-        files: ['scripts/**/*.js'],
-        options: {
-          livereload: reloadPort
-        }
       }
     }
 
