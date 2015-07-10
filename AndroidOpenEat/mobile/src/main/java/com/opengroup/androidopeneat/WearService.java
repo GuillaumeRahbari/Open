@@ -54,6 +54,11 @@ public class WearService extends WearableListenerService {
 
         //traite le message reçu
         final String path = messageEvent.getPath();
+
+        if(path.equals("bonjour")) {
+            int random = (int)(Math.random() * 100);
+            sendMessage("bonjour", "affiche :" + random);
+        }
     }
 
     /**

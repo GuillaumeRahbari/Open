@@ -67,6 +67,9 @@ public class MainWear extends Activity implements GoogleApiClient.ConnectionCall
     @Override
     public void onConnected(Bundle bundle) {
         Wearable.MessageApi.addListener(mApiClient, this);
+
+        //envoie le premier message
+        sendMessage("bonjour", "smartphone");
     }
 
     @Override
@@ -87,6 +90,20 @@ public class MainWear extends Activity implements GoogleApiClient.ConnectionCall
     public void onMessageReceived(MessageEvent messageEvent) {
         //traite le message reçu
         final String path = messageEvent.getPath();
+
+        if(path.equals("bonjour")){
+
+            //récupère le contenu du message
+            final String message = new String(messageEvent.getData());
+
+            //penser à effectuer les actions graphiques dans le UIThread
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    
+                }
+            });
+        }
     }
 
     /**
