@@ -2,7 +2,7 @@
  * Created by Guillaume on 08/07/2015.
  */
 
-var pg = require('pg'); // Inclusion de postgresql
+var pg = require('./dbApi'); // Inclusion de notre api database
 var fs = require('fs'); // Inclusion de file stream.
 
 /**
@@ -20,17 +20,6 @@ exports.initialisationBDD = function() {
   var connectionJSON = fs.readFileSync(__dirname + '/connection_infos.json');
 
   // Connexion pour initialiser la bdd.
-  pg.connect(connectionJSON, function (err, client, done){
-    if(err){
-      return console.log('error fetching client from pool', err);
-    }
-    client.query(fileBDD, function(err, result){
-      done();
-      if(err){
-        return console.log('error running query', err);
-      }
-      console.log(result);
-    })
-  });
+  pg.connect(connectionJSON,fileBDD);
 
 };
