@@ -1,1 +1,87 @@
+/* footer social icons */
 
+.social-network a.icoFacebook:hover {
+  background-color:#3B5998;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+.social-network a.icoTwitter:hover {
+  background-color:#33ccff;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-circle li a {
+  background-color: rgb(255,255,255);
+  display:inline-block;
+  position:relative;
+  margin:0 auto 0 auto;
+  -moz-border-radius:10%;
+  -webkit-border-radius:10%;
+  border-radius:10%;
+  text-align:center;
+  width: 50px;
+  height: 50px;
+  font-size:20px;
+}
+
+.social-circle li .fa {
+  color: #13628F;
+}
+
+.social-circle li i {
+  margin:0;
+  line-height:50px;
+  text-align: center;
+}
+
+.social-circle li a:hover i{
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.social-circle li a:hover .fa{
+  color: white;
+}
+
+
+/*
+Permet de réinitialiser les images.
+*/
+.social-circle i {
+  color: rgba(50,50,50,0.5);
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+/* footer social icons */
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left:0 !important;
+  padding: 0;
+}
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.mar-bot20 {
+  margin-bottom: 20px;
+}
