@@ -35,9 +35,9 @@ angular
       });
 
     uiGmapGoogleMapApiProvider.configure({
-      china: true,
-      v: '3.17',
-      libraries: 'weather,geometry,visualization'
+      v: '3.20',
+      libraries: 'weather,geometry,visualization',
+      signed_in :true
     });
 
   }]);

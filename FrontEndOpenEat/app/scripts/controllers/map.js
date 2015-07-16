@@ -19,13 +19,8 @@ angular.module('frontEndOpenEatApp')
     };
 
     $scope.options = {
-      scrollwheel: false
     };
 
-    $scope.$on('$viewContentLoaded', function () {
-      var mapHeight = 500; // or any other calculated value
-      $("#my-map .angular-google-map-container").height(mapHeight);
-    });
 
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.

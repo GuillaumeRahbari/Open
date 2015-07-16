@@ -12,7 +12,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/map.css">
@@ -25,11 +25,11 @@
 
     <header ng-include="'views/header.html'" ng-controller="HeaderCtrl"></header>
 
-    <div ng-include="'views/map.html'" ng-controller="MapCtrl"></div>
+    <map ng-include="'views/map.html'" ng-controller="MapCtrl"></map>
 
-    <div class="container">
+    <navside class="container">
       <div ng-view=""></div>
-    </div>
+    </navside>
 
     <footer ng-include="'views/footer.html'" ng-controller="FooterCtrl"></footer>
 
