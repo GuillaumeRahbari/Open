@@ -3,6 +3,11 @@ body, html {
   width: 100%;
 }
 
+body {
+  font-family: NeoSansPro-Regular;
+  font-weight: 800;
+}
+
 map {
   height: inherit;
 }

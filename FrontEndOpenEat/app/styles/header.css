@@ -28,6 +28,7 @@
   -ms-transition: all 0.2s;
   transition: all 0.2s;
   font-size: 125%;
+  text-shadow: 0 1px 0 #cee0ea;
 }
 
 .navbar-default .navbar-collapse .navbar-nav li a:hover {
