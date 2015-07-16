@@ -17,7 +17,7 @@ angular.module('frontEndOpenEatApp')
       },
       zoom: 14
     };
-    
+
     $scope.options = {scrollwheel: false};
 
     $scope.$on('$viewContentLoaded', function () {
