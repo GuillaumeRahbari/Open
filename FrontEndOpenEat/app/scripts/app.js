@@ -15,9 +15,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'uiGmapgoogle-maps'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', 'uiGmapGoogleMapApiProvider', function ($routeProvider, uiGmapGoogleMapApiProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -32,4 +33,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+
+    uiGmapGoogleMapApiProvider.configure({
+      china: true,
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
+    });
+
+  }]);
