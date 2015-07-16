@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/map.css">
     <!-- endbuild -->
   </head>
   <body ng-app="frontEndOpenEatApp">
@@ -23,6 +24,8 @@
     <![endif]-->
 
     <header ng-include="'views/header.html'" ng-controller="HeaderCtrl"></header>
+
+    <div ng-include="'views/map.html'" ng-controller="MapCtrl"></div>
 
     <div class="container">
       <div ng-view=""></div>
@@ -64,6 +67,7 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/footer.js"></script>
         <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/controllers/map.js"></script>
         <!-- endbuild -->
 </body>
 </html>
