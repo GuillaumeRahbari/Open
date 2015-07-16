@@ -1,3 +1,8 @@
+.navbar {
+  height: 50px;
+  min-height: 0px;
+}
+
 .navbar-default ul {
   display: inline-block;
   padding: 0;
@@ -39,4 +44,5 @@
   -o-transition: all 0.2s;
   -ms-transition: all 0.2s;
   transition: all 0.2s;
+  text-shadow: none;
 }

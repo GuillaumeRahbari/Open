@@ -8,5 +8,5 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('HeaderCtrl', [function () {
+  .controller('HeaderCtrl', ['$scope', function ($scope) {
   }]);
