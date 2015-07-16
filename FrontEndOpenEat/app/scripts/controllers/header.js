@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name frontEndOpenEatApp.controller:FooterCtrl
+ * @name frontEndOpenEatApp.controller:HeaderCtrl
  * @description
- * # FooterCtrl
+ * # HeaderCtrl
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('FooterCtrl', [function () {
+  .controller('HeaderCtrl', [function () {
   }]);
