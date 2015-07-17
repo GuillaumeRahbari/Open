@@ -14,4 +14,10 @@ angular.module('frontEndOpenEatApp')
       angular.element('navside').toggleClass('clicked');
     };
 
+    $scope.displayNavside =  function() {
+      if (!angular.element('navside').hasClass('clicked')) {
+        angular.element('navside').addClass('clicked');
+      }
+    };
+
   }]);
