@@ -15,7 +15,9 @@ angular.module('frontEndOpenEatApp')
         latitude: 48.8879996,
         longitude: 2.2882407
       },
-      zoom: 16
+      zoom: 18,
+      event : {
+      }
     };
 
     $scope.options = {
@@ -33,8 +35,8 @@ angular.module('frontEndOpenEatApp')
     );
 
     /**
-     * Permet de récupérer les
-     * @param data
+     * Permet de récupérer les marqueurs
+     * @param shops
      */
     var createMarkersForShops = function (shops){
       $scope.shopMarkers = [];
@@ -49,11 +51,14 @@ angular.module('frontEndOpenEatApp')
       }
     };
 
-
-    // uiGmapGoogleMapApi is a promise.
-    // The "then" callback function provides the google.maps object.
-    uiGmapGoogleMapApi.then(function() {
-
-    });
+    /**
+     * Action a effectué lorsque l'on clique sur un marqueur.
+     * @param instanceMarker Une instance du marqueur.
+     * @param eventName Le nom de l'event.
+     * @param infosMarker Les infos du marqueur récupérés depuis la bdd.
+     */
+    $scope.markerClick = function (instanceMarker, eventName, infosMarker) {
+      instanceMarker.getMap().panTo(instanceMarker.getPosition());
+    };
 
   }]);

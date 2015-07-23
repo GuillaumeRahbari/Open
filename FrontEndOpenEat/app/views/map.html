@@ -1,9 +1,16 @@
 <ui-gmap-google-map id="my-map"
                     center="map.center"
                     zoom="map.zoom"
-                    options="options">
+                    options="options"
+                    pan="true"
+                    events="map.event">
 
   <!-- other ui-gmap-directives here -->
-  <ui-gmap-markers models="shopMarkers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+  <ui-gmap-markers models="shopMarkers"
+                   coords="'self'"
+                   icon="'icon'"
+                   click="markerClick">
+
+  </ui-gmap-markers>
 
 </ui-gmap-google-map>
