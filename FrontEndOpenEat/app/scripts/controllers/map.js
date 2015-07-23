@@ -59,6 +59,16 @@ angular.module('frontEndOpenEatApp')
      */
     $scope.markerClick = function (instanceMarker, eventName, infosMarker) {
       instanceMarker.getMap().panTo(instanceMarker.getPosition());
+      $scope.windowOptions.visible = !$scope.windowOptions.visible;
+      $scope.windowCenter = instanceMarker.getPosition();
+    };
+
+    $scope.windowOptions = {
+      visible: false
+    };
+
+    $scope.closeClick = function() {
+      $scope.windowOptions.visible = false;
     };
 
   }]);
