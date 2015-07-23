@@ -12,22 +12,42 @@ angular.module('frontEndOpenEatApp')
 
     $scope.map = {
       center: {
-        latitude: 51.219053,
-        longitude: 4.404418
+        latitude: 48.8879996,
+        longitude: 2.2882407
       },
-      zoom: 14
+      zoom: 16
     };
 
     $scope.options = {
     };
 
+    /**
+     * Permet de récupérer tous les magasins
+     */
     shops.getShops().then(
       function (data){
-        console.log(data);
+        createMarkersForShops(data);
       }, function (msg) {
         console.log(msg);
       }
     );
+
+    /**
+     * Permet de récupérer les
+     * @param data
+     */
+    var createMarkersForShops = function (shops){
+      $scope.shopMarkers = [];
+      for (var shop in shops) {
+        var marker = {
+          id : shops[shop].id,
+          latitude : shops[shop].latitude,
+          longitude : shops[shop].longitude,
+          title : shops[shop].description
+        };
+        $scope.shopMarkers.push(marker);
+      }
+    };
 
 
     // uiGmapGoogleMapApi is a promise.
