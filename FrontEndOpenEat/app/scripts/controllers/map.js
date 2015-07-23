@@ -8,7 +8,7 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('MapCtrl', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
+  .controller('MapCtrl', ['$scope', 'uiGmapGoogleMapApi', 'shops', function ($scope, uiGmapGoogleMapApi, shops) {
 
     $scope.map = {
       center: {
@@ -20,6 +20,14 @@ angular.module('frontEndOpenEatApp')
 
     $scope.options = {
     };
+
+    shops.getShops().then(
+      function (data){
+        console.log(data);
+      }, function (msg) {
+        console.log(msg);
+      }
+    );
 
 
     // uiGmapGoogleMapApi is a promise.
