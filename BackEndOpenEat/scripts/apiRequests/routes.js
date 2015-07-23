@@ -8,11 +8,6 @@ var router = express.Router();
 
 var database = require('./../models/database');
 
-var fs = require('fs'); // Inclusion de file stream.
-
-// Lecture du fichier contenant les infos de connexion au format JSON.
-//var infosConnectionJSON = fs.readFileSync(__dirname + '/../models/connection_infos.json');
-
 // La route pour '/'
 router.get('/', function (req, res) {
   res.send('Hello World!');
@@ -21,7 +16,12 @@ router.get('/', function (req, res) {
 // La route pour '/shops'
 router.get('/shops', function (req, res) {
   var success = function (objetJSON) {
-    res.send(objetJSON);
+    var finalObject = {
+      status : 'success',
+      data: objetJSON
+    };
+    console.log(finalObject);
+    res.send(finalObject);
   };
 
   var fail = function(){

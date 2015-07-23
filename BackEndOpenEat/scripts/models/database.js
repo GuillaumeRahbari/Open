@@ -5,13 +5,12 @@
 var database = require('./dbApi'); // Inclusion de notre api database
 var fs = require('fs'); // Inclusion de file stream.
 
-// Lecture du fichier contenant les infos de connexion au format JSON.
-var connectionJSON = fs.readFileSync(__dirname + '/connection_infos.json');
+// Les infos de connexion.
+var connectionJSON = 'postgres://Guillaume:open@localhost/OpenEat';
 
 /**
  * Fonction d'initialisation de la base de donnée PostegreSQL
- * On utilise pour cela les fichiers :
- * - connection_infos.json (contenant les informations de connexion à la BDD)
+ * On utilise pour cela le fichier :
  * - init_Database.sql (contenant la création de la BDD de base).
  */
 exports.initialisationBDD = function() {
