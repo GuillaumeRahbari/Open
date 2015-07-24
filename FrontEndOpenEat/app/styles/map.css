@@ -24,31 +24,3 @@
 #loader .fa {
   font-size: 12em;
 }
-
-.shops {
-  text-align: center;
-  position: absolute;
-  z-index: 2;
-  right: 10px;
-  top: 70px;
-  background-color: white;
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background-position: 50% 50%;
-  line-height: 75px;
-  -moz-box-shadow: 0px 0px 5px 0px #656565;
-  -webkit-box-shadow: 0px 0px 5px 0px #656565;
-  -o-box-shadow: 0px 0px 5px 0px #656565;
-  box-shadow: 0px 0px 5px 0px #656565;
-  filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=5);
-}
-
-.shops:hover i{
-  color: #13628F;
-}
-
-.shops i {
-  vertical-align: middle;
-  font-size: 3em;
-}
