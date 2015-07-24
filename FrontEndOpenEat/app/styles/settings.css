@@ -60,5 +60,5 @@ input.toggle-round:checked + label:before {
   background-color: #8ce196;
 }
 input.toggle-round:checked + label:after {
-  margin-left: 60px;
+  margin-left: 48px;
 }
