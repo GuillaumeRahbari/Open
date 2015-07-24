@@ -8,11 +8,34 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('MapCtrl', ['$scope', 'uiGmapGoogleMapApi', 'shops', '$timeout', function ($scope, uiGmapGoogleMapApi, shops, $timeout) {
+  .controller('MapCtrl', ['$scope', 'shops', '$timeout', function ($scope, shops, $timeout) {
+
+    /**
+     * Effet de chargement au début.
+     */
+    $timeout(function () {
+      angular.element('#loader').addClass('fadeOut');
+      $timeout(function () {
+        initialize();
+      },1000);
+    },2000);
+
+    /**
+     * Initialisation de la carte google map.
+     */
+    function initialize () {
+      var mapOptions = {
+        zoom: 18,
+        center: new google.maps.LatLng(48.8879996, 2.2882407)
+      };
+
+      var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+    }
 
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
-    uiGmapGoogleMapApi.then(
+    /*uiGmapGoogleMapApi.then(
       function() {
         $timeout(function () {
           angular.element('#loader').addClass('fadeOut');
@@ -33,7 +56,7 @@ angular.module('frontEndOpenEatApp')
       }, function(msg){
         console.log(msg);
       }
-    );
+    );*/
 
     /**
      * Action a effectué lorsque l'on clique sur un marqueur.

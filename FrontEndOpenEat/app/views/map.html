@@ -3,25 +3,5 @@
   <i class="fa fa-cog fa-spin"></i>
 </div>
 
-<ui-gmap-google-map id="my-map"
-                    center="map.center"
-                    zoom="map.zoom"
-                    pan="true"
-                    events="map.event">
-
-  <!-- other ui-gmap-directives here -->
-  <ui-gmap-markers models="shopMarkers"
-                   coords="'self'"
-                   icon="'icon'"
-                   click="markerClick">
-
-  </ui-gmap-markers>
-
-  <ui-gmap-window coords="windowCenter"
-                  options="windowOptions"
-                  closeClick="closeClick()"
-                  templateParameter="{infosMarker : infosMarker}">
-  </ui-gmap-window>
-
-</ui-gmap-google-map>
+<div id="map-canvas"></div>
 
