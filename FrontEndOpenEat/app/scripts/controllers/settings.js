@@ -28,9 +28,7 @@ angular.module('frontEndOpenEatApp')
     var createMarkersForShops = function (shops){
       for (var shop in shops) {
         var marker = {
-          id : shops[shop].id,
-          latitude : shops[shop].latitude,
-          longitude : shops[shop].longitude,
+          position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
           title : shops[shop].description
         };
         $scope.$parent.shopMarkers.push(marker);

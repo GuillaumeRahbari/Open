@@ -31,6 +31,11 @@ angular.module('frontEndOpenEatApp')
 
       var map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
+
+      for (var shop in $scope.$parent.shopMarkers){
+        var marker = new google.maps.Marker($scope.$parent.shopMarkers[shop]);
+        marker.setMap(map);
+      }
     }
 
     // uiGmapGoogleMapApi is a promise.
