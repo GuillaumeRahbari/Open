@@ -8,20 +8,32 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('MapCtrl', ['$scope', 'uiGmapGoogleMapApi', 'shops', function ($scope, uiGmapGoogleMapApi, shops) {
+  .controller('MapCtrl', ['$scope', 'uiGmapGoogleMapApi', 'shops', '$timeout', function ($scope, uiGmapGoogleMapApi, shops, $timeout) {
 
-    $scope.map = {
-      center: {
-        latitude: 48.8879996,
-        longitude: 2.2882407
-      },
-      zoom: 18,
-      event : {
+    // uiGmapGoogleMapApi is a promise.
+    // The "then" callback function provides the google.maps object.
+    uiGmapGoogleMapApi.then(
+      function() {
+        $timeout(function () {
+          angular.element('#loader').addClass('fadeOut');
+          $timeout(function () {
+            $scope.map = {
+              center: {
+                latitude: 48.8879996,
+                longitude: 2.2882407
+              },
+              zoom: 18,
+              event : {
+              }
+            };
+            angular.element('#loader').css('display', 'none');
+            angular.element('#my-map').css('display', 'block');
+          }, 1000);
+        }, 2000);
+      }, function(msg){
+        console.log(msg);
       }
-    };
-
-    $scope.options = {
-    };
+    );
 
     /**
      * Permet de récupérer tous les magasins

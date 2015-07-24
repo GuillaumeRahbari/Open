@@ -3,3 +3,24 @@
   width: 100%;
   z-index: 1;
 }
+
+#my-map {
+  display: none;
+}
+
+#loader {
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+#loader i{
+  margin-top: 200px;
+}
+
+#loader .fa {
+  font-size: 12em;
+}
