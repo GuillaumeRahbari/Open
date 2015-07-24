@@ -36,34 +36,6 @@ angular.module('frontEndOpenEatApp')
     );
 
     /**
-     * Permet de récupérer tous les magasins
-     */
-    shops.getShops().then(
-      function (data){
-        createMarkersForShops(data);
-      }, function (msg) {
-        console.log(msg);
-      }
-    );
-
-    /**
-     * Permet de récupérer les marqueurs
-     * @param shops
-     */
-    var createMarkersForShops = function (shops){
-      $scope.shopMarkers = [];
-      for (var shop in shops) {
-        var marker = {
-          id : shops[shop].id,
-          latitude : shops[shop].latitude,
-          longitude : shops[shop].longitude,
-          title : shops[shop].description
-        };
-        $scope.shopMarkers.push(marker);
-      }
-    };
-
-    /**
      * Action a effectué lorsque l'on clique sur un marqueur.
      * @param instanceMarker Une instance du marqueur.
      * @param eventName Le nom de l'event.
@@ -71,12 +43,13 @@ angular.module('frontEndOpenEatApp')
      */
     $scope.markerClick = function (instanceMarker, eventName, infosMarker) {
       instanceMarker.getMap().panTo(instanceMarker.getPosition());
+      $scope.infosMarker = infosMarker.title;
+      $scope.windowCenter = infosMarker;
       $scope.windowOptions.visible = !$scope.windowOptions.visible;
-      $scope.windowCenter = instanceMarker.getPosition();
     };
 
     $scope.windowOptions = {
-      visible: false
+      content : '<div>' + $scope.infosMarker + '</div>'
     };
 
     $scope.closeClick = function() {
