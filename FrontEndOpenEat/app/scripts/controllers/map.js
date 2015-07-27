@@ -62,10 +62,14 @@ angular.module('frontEndOpenEatApp')
       }
     }
 
+    /**
+     * Permet d'ajouter un listener click sur les markers.
+     * @param marker
+     * @param infowindow
+     */
     function attachListener (marker, infowindow){
       google.maps.event.addListener( marker, 'click', function(){
         map.panTo(marker.getPosition());
-        console.log(marker);
         infowindow.open(map,marker);
       });
     }
