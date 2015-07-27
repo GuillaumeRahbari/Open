@@ -11,8 +11,12 @@ angular.module('frontEndOpenEatApp')
   .controller('SettingsCtrl', ['$scope', 'shops', function ($scope, shops) {
 
     /**
-     * Permet de récupérer tous les magasins
+     * Permet de faire apparaitre ou disparaitre les magasins.
      */
+    $scope.toggleShops = function() {
+      $scope.$parent.toggleMarkers = !$scope.$parent.toggleMarkers;
+    };
+
     shops.getShops().then(
       function (data){
         createMarkersForShops(data);
@@ -26,13 +30,15 @@ angular.module('frontEndOpenEatApp')
      * @param shops
      */
     var createMarkersForShops = function (shops){
+      var markers = [];
       for (var shop in shops) {
         var marker = {
           position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
           title : shops[shop].description
         };
-        $scope.$parent.shopMarkers.push(marker);
+        markers.push(new google.maps.Marker(marker));
       }
+      $scope.$parent.shopMarkers = markers;
     };
 
   }]);

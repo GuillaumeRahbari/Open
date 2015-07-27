@@ -10,4 +10,5 @@
 angular.module('frontEndOpenEatApp')
   .controller('MainCtrl', ['$scope', function ($scope) {
     $scope.shopMarkers = [];
+    $scope.toggleMarkers = false;
   }]);

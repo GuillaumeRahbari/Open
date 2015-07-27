@@ -20,6 +20,8 @@ angular.module('frontEndOpenEatApp')
       },1000);
     },2000);
 
+
+    var map;
     /**
      * Initialisation de la carte google map.
      */
@@ -29,12 +31,28 @@ angular.module('frontEndOpenEatApp')
         center: new google.maps.LatLng(48.8879996, 2.2882407)
       };
 
-      var map = new google.maps.Map(document.getElementById('map-canvas'),
+      map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
 
-      for (var shop in $scope.$parent.shopMarkers){
-        var marker = new google.maps.Marker($scope.$parent.shopMarkers[shop]);
-        marker.setMap(map);
+    }
+
+    // Permet de voir quand la variable est modifié.
+    $scope.$parent.$watch('toggleMarkers', updateShopsMarkers);
+
+    /**
+     * Permet d'update les markers des magasins.
+     */
+    function updateShopsMarkers (){
+      if (!$scope.$parent.toggleMarkers){
+        for (var marker in $scope.$parent.shopMarkers){
+          $scope.$parent.shopMarkers[marker].setMap(null);
+        }
+      }
+      else {
+        for (var marker in $scope.$parent.shopMarkers){
+          $scope.$parent.shopMarkers[marker].setAnimation(google.maps.Animation.DROP);
+          $scope.$parent.shopMarkers[marker].setMap(map);
+        }
       }
     }
 
