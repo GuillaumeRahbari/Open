@@ -36,70 +36,41 @@ angular.module('frontEndOpenEatApp')
 
     }
 
-    // Permet de voir quand la variable est modifié.
-    $scope.$parent.$watch('toggleMarkers', updateShopsMarkers);
-
     /**
      * Permet d'update les markers des magasins.
      */
     function updateShopsMarkers (){
       if (!$scope.$parent.toggleMarkers){
         for (var marker in $scope.$parent.shopMarkers){
-          $scope.$parent.shopMarkers[marker].setMap(null);
+          var currentMarker = $scope.$parent.shopMarkers[marker];
+          currentMarker.setMap(null);
+          google.maps.event.clearInstanceListeners(currentMarker, 'click');
         }
       }
       else {
         for (var marker in $scope.$parent.shopMarkers){
-          $scope.$parent.shopMarkers[marker].setAnimation(google.maps.Animation.DROP);
-          $scope.$parent.shopMarkers[marker].setMap(map);
+          var currentMarker = $scope.$parent.shopMarkers[marker];
+          currentMarker.setAnimation(google.maps.Animation.DROP);
+
+          var infowindow = new google.maps.InfoWindow({
+            content: currentMarker.title
+          });
+
+          attachListener(currentMarker, infowindow);
+          currentMarker.setMap(map);
         }
       }
     }
 
-    // uiGmapGoogleMapApi is a promise.
-    // The "then" callback function provides the google.maps object.
-    /*uiGmapGoogleMapApi.then(
-      function() {
-        $timeout(function () {
-          angular.element('#loader').addClass('fadeOut');
-          $timeout(function () {
-            $scope.map = {
-              center: {
-                latitude: 48.8879996,
-                longitude: 2.2882407
-              },
-              zoom: 18,
-              event : {
-              }
-            };
-            angular.element('#loader').css('display', 'none');
-            angular.element('#my-map').css('display', 'block');
-          }, 1000);
-        }, 2000);
-      }, function(msg){
-        console.log(msg);
-      }
-    );*/
+    function attachListener (marker, infowindow){
+      google.maps.event.addListener( marker, 'click', function(){
+        map.panTo(marker.getPosition());
+        console.log(marker);
+        infowindow.open(map,marker);
+      });
+    }
 
-    /**
-     * Action a effectué lorsque l'on clique sur un marqueur.
-     * @param instanceMarker Une instance du marqueur.
-     * @param eventName Le nom de l'event.
-     * @param infosMarker Les infos du marqueur récupérés depuis la bdd.
-     */
-    $scope.markerClick = function (instanceMarker, eventName, infosMarker) {
-      instanceMarker.getMap().panTo(instanceMarker.getPosition());
-      $scope.infosMarker = infosMarker.title;
-      $scope.windowCenter = infosMarker;
-      $scope.windowOptions.visible = !$scope.windowOptions.visible;
-    };
-
-    $scope.windowOptions = {
-      content : '<div>' + $scope.infosMarker + '</div>'
-    };
-
-    $scope.closeClick = function() {
-      $scope.windowOptions.visible = false;
-    };
+    // Permet de voir quand la variable est modifié.
+    $scope.$parent.$watch('toggleMarkers', updateShopsMarkers);
 
   }]);
