@@ -12,6 +12,7 @@ angular.module('frontEndOpenEatApp')
     $scope.shopMarkers = []; // La liste des marqueurs de magasins.
     $scope.toggleMarkers = false; // Permet d'afficher ou non les magasins (défaut non).
     $scope.selectShops = false; // Permet de savoir si on affiche des infos sur les magasins ou si on les sélectionne.
+    $scope.selectedShops = []; // Contient les magasins sélectionnés.
 
     /**
      * Chargement des magasins.

@@ -9,5 +9,6 @@
  */
 angular.module('frontEndOpenEatApp')
   .constant('constants', {
-    backendUrl : 'http://localhost:3000/'
+    backendUrl : 'http://localhost:3000/',
+    markerBlue : '/images/marker-blue.png'
   });

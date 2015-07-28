@@ -8,7 +8,7 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('MapCtrl', ['$scope', 'shops', '$timeout', function ($scope, shops, $timeout) {
+  .controller('MapCtrl', ['$scope', 'shops', '$timeout','constants',  function ($scope, shops, $timeout, constants) {
 
     /**
      * Effet de chargement au début.
@@ -69,13 +69,23 @@ angular.module('frontEndOpenEatApp')
      */
     function attachListener (marker, infowindow){
       google.maps.event.addListener( marker, 'click', function(){
+        // Dans le cas où on on veut afficher des infos sur le marker.
         if (!$scope.$parent.selectShops){
           map.panTo(marker.getPosition());
           infowindow.open(map,marker);
         }
+        // Dans le cas où on veut créer notre liste pour un itinéraire.
         else {
-          // TODO changer la couleur du marker
-          console.log(marker);
+          var id = marker.getZIndex();
+          var index = $scope.$parent.selectedShops.indexOf(id);
+          if (index == -1){
+            marker.setIcon(constants.markerBlue);
+            $scope.$parent.selectedShops.push(id);
+          }
+          else {
+            marker.setIcon();
+            $scope.$parent.selectedShops.splice(index,1);
+          }
         }
       });
     }

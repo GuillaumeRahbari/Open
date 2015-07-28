@@ -40,7 +40,8 @@ angular.module('frontEndOpenEatApp')
       for (var shop in shops) {
         var marker = {
           position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
-          title : shops[shop].description
+          title : shops[shop].description,
+          zIndex : shops[shop].id
         };
         markers.push(new google.maps.Marker(marker));
       }
