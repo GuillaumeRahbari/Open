@@ -66,3 +66,27 @@ exports.read = function (infosConnectionJSON, sqlRequest, success, fail){
   });
 
 };
+
+/**
+ * Permet d'update dans la bdd
+ * @param infosConnectionJSON Les informations de connexion à la bdd.
+ * @param sqlRequest La requête sql.
+ * @param success La fonction de callback success.
+ * @param fail La fonction de callback fail.
+ */
+exports.update = function (infosConnectionJSON, sqlRequest, success, fail){
+
+  pg.connect(infosConnectionJSON, function(err, client, done){
+    // Gestion des erreurs
+    if(err){
+      fail();
+      console.log('error fetching client from pool', err);
+    }
+
+    client.query(sqlRequest).on('end', function () {
+      client.end();
+      success();
+    });
+
+  });
+};

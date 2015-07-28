@@ -32,6 +32,26 @@ router.get('/shops', function (req, res) {
 
 });
 
+// La route pour '/users'
+router.post('/users', function(req,res){
+  var success = function () {
+    var finalObject = {
+      status : 'success'
+    };
+    console.log(finalObject);
+    res.send(finalObject);
+  };
+
+  var fail = function(){
+    res.status(500);
+  };
+
+  // Grab data from http request
+  var data = {text: req.body.text, complete: req.body.complete};
+
+  database.shopsChosen(data, success, fail);
+});
+
 // La route lorsqu'on a pas trouvé la page (404 page not found).
 router.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');

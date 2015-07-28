@@ -31,3 +31,16 @@ exports.initialisationBDD = function() {
 exports.getShops = function(success, fail) {
   database.read(connectionJSON, "SELECT * FROM shops", success, fail);
 };
+
+/**
+ * Fonction permettant de noter en bdd les magasins choisis par l'utilisateur.
+ * @param shops Les différents magasins choisis.
+ * @param success La fonction callback de success.
+ * @param fail La fonction callback de fail.
+ */
+exports.shopsChosen = function (shops, success, fail){
+  for (var shop in shops){
+    var sqlrequest = "UPDATE shops SET id_user=1 WHERE id=" + shops[shop] + ";";
+    database.update(connectionJSON, sqlrequest, success, fail);
+  }
+};
