@@ -8,8 +8,8 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('HomeCtrl', [function () {
+  .controller('HomeCtrl', ['$scope', function ($scope) {
 
-
+    $scope.$parent.selectShops = false;
 
   }]);

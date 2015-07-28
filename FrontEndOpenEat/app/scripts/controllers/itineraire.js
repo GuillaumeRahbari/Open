@@ -9,5 +9,5 @@
  */
 angular.module('frontEndOpenEatApp')
   .controller('ItineraireCtrl',['$scope', function ($scope) {
-    $scope.$parent.selectShops = false;
+    $scope.$parent.selectShops = true;
   }]);

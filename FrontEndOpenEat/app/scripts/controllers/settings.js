@@ -10,6 +10,8 @@
 angular.module('frontEndOpenEatApp')
   .controller('SettingsCtrl', ['$scope', 'shops', function ($scope, shops) {
 
+    $scope.$parent.selectShops = false;
+
     /**
      * Permet de faire apparaitre ou disparaitre les magasins.
      */

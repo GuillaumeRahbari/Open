@@ -69,8 +69,14 @@ angular.module('frontEndOpenEatApp')
      */
     function attachListener (marker, infowindow){
       google.maps.event.addListener( marker, 'click', function(){
-        map.panTo(marker.getPosition());
-        infowindow.open(map,marker);
+        if (!$scope.$parent.selectShops){
+          map.panTo(marker.getPosition());
+          infowindow.open(map,marker);
+        }
+        else {
+          // TODO changer la couleur du marker
+          console.log(marker);
+        }
       });
     }
 
