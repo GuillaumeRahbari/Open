@@ -24,15 +24,15 @@ angular
         controller: 'HomeCtrl',
         controllerAs: 'home'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl',
         controllerAs: 'settings'
+      })
+      .when('/itineraire', {
+        templateUrl: 'views/itineraire.html',
+        controller: 'ItineraireCtrl',
+        controllerAs: 'itineraire'
       })
       .otherwise({
         redirectTo: '/'

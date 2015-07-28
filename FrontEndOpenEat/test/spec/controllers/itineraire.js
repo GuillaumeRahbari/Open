@@ -1,20 +1,23 @@
 'use strict';
 
-describe('Controller: AboutCtrl', function () {
+describe('Controller: ItineraireCtrl', function () {
 
   // load the controller's module
   beforeEach(module('frontEndOpenEatApp'));
 
-  var AboutCtrl;
+  var ItineraireCtrl,
+    scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
-    AboutCtrl = $controller('AboutCtrl', {
+    scope = $rootScope.$new();
+    ItineraireCtrl = $controller('ItineraireCtrl', {
+      $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(AboutCtrl.awesomeThings.length).toBe(3);
+    expect(ItineraireCtrl.awesomeThings.length).toBe(3);
   });
 });
