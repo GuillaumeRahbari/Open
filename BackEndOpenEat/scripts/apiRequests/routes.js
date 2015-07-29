@@ -8,9 +8,25 @@ var router = express.Router();
 
 var database = require('./../models/database');
 
-// La route pour '/'
-router.get('/', function (req, res) {
-  res.send('Hello World!');
+// La route pour '/users'
+router.post('/users', function(req,res){
+  console.log(req.body);
+  var success = function () {
+    var finalObject = {
+      status : 'success'
+    };
+    console.log(finalObject);
+    res.send(finalObject);
+  };
+
+  var fail = function(){
+    res.sendStatus(500);
+  };
+
+  // Grab data from http request
+  var data = req.body;
+
+  database.shopsChosen(data, success, fail);
 });
 
 // La route pour '/shops'
@@ -25,37 +41,17 @@ router.get('/shops', function (req, res) {
   };
 
   var fail = function(){
-    res.status(500);
+    res.sendStatus(500);
   };
 
   database.getShops(success, fail);
 
 });
 
-// La route pour '/users'
-router.post('/users', function(req,res){
-  var success = function () {
-    var finalObject = {
-      status : 'success'
-    };
-    console.log(finalObject);
-    res.send(finalObject);
-  };
-
-  var fail = function(){
-    res.status(500);
-  };
-
-  // Grab data from http request
-  var data = {text: req.body.text, complete: req.body.complete};
-
-  database.shopsChosen(data, success, fail);
-});
-
 // La route lorsqu'on a pas trouvé la page (404 page not found).
 router.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');
-  res.status(404).send('Page introuvable !');
+  res.sendStatus(404);
 });
 
 module.exports = router;

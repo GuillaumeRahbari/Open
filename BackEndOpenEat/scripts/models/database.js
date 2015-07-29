@@ -39,8 +39,16 @@ exports.getShops = function(success, fail) {
  * @param fail La fonction callback de fail.
  */
 exports.shopsChosen = function (shops, success, fail){
-  for (var shop in shops){
-    var sqlrequest = "UPDATE shops SET id_user=1 WHERE id=" + shops[shop] + ";";
+
+  var sqlrequest= "UPDATE shops SET id_user=NULL WHERE id_user IS NOT NULL;";
+
+  if (shops.length != 0) {
+    for (var shop in shops){
+      sqlrequest += "UPDATE shops SET id_user=1 WHERE id=" + shops[shop] + ";";
+    }
     database.update(connectionJSON, sqlrequest, success, fail);
+  }
+  else {
+    database.update(connectionJSON,sqlrequest, success, fail);
   }
 };
