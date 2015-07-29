@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc service
- * @name starter.location
+ * @name starter.factory:location
  * @description
  * # localisation
  * Service in the starter.
