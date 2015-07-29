@@ -8,20 +8,28 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MapCtrl', ['$scope',  function ($scope) {
+    .controller('MapCtrl', ['$scope', 'location',  function ($scope, location) {
 
         var map;
         /**
          * Initialisation de la carte google map.
          */
         function initialize () {
-            var mapOptions = {
-                zoom: 18,
-                center: new google.maps.LatLng(48.8879996, 2.2882407)
-            };
 
-            map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
+            location.getLocation().then(
+                function (position){
+                    var mapOptions = {
+                        zoom: 18,
+                        center: new google.maps.LatLng(position.latitude, position.longitude)
+                    };
+
+                    map = new google.maps.Map(document.getElementById('map-canvas'),
+                        mapOptions);
+                },
+                function (msg) {
+                    console.log(msg);
+                }
+            );
 
         }
 
