@@ -24,6 +24,7 @@ angular.module('starter')
                 mapOptions);
 
         }
-        initialize();
+
+        google.maps.event.addDomListener(window, 'load', initialize);
 
     }]);
