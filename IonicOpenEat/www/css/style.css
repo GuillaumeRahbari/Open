@@ -1,1 +1,11 @@
 /* Empty. Add your own CSS if you like */
+
+body, html, map {
+    height: 100%;
+    width: 100%;
+}
+
+#map-canvas {
+    height: 100%;
+    width: 100%;
+}
