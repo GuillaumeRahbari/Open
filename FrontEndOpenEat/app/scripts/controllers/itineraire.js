@@ -8,6 +8,17 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('ItineraireCtrl',['$scope', function ($scope) {
+  .controller('ItineraireCtrl',['$scope', 'shops', function ($scope, shops) {
     $scope.$parent.selectShops = true;
+
+    $scope.validateChosenShops = function () {
+      shops.createRoute($scope.selectedShops).then(
+        function (data) {
+          console.log(data);
+        },
+        function (msg) {
+          console.log(msg);
+        }
+      )
+    };
   }]);
