@@ -8,7 +8,7 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MapCtrl', ['$scope', 'location', 'shops',  function ($scope, location, shops) {
+    .controller('MapCtrl', ['$scope', 'location', 'shops', '$cordovaGeolocation',  function ($scope, location, shops, $cordovaGeolocation) {
 
         var map;
         /**
@@ -16,7 +16,7 @@ angular.module('starter')
          */
         function initialize () {
 
-            location.getLocation().then(
+            $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: false}).then(
                 function (position){
                     var mapOptions = {
                         zoom: 18,
@@ -27,7 +27,7 @@ angular.module('starter')
                         mapOptions);
                 },
                 function (msg) {
-                    console.log(msg);
+                    alert(msg);
                 }
             );
 
