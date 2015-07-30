@@ -8,7 +8,7 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MapCtrl', ['$scope', 'location', 'shops', '$cordovaGeolocation',  function ($scope, location, shops, $cordovaGeolocation) {
+    .controller('MapCtrl', ['$scope', 'shops', '$cordovaGeolocation', '$ionicLoading',  function ($scope, shops, $cordovaGeolocation, $ionicLoading) {
 
         var map;
         /**
@@ -16,18 +16,25 @@ angular.module('starter')
          */
         function initialize () {
 
+            $ionicLoading.show({
+               template:'<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+            });
+
             $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(
                 function (position){
                     var mapOptions = {
                         zoom: 18,
-                        center: new google.maps.LatLng(position.latitude, position.longitude)
+                        center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
                     };
 
                     map = new google.maps.Map(document.getElementById('map-canvas'),
                         mapOptions);
+
+                    $ionicLoading.hide();
                 },
                 function (msg) {
-                    alert(msg);
+                    $ionicLoading.hide();
+                    console.log(msg);
                 }
             );
 

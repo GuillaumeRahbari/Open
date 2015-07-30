@@ -14,7 +14,7 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -28,16 +28,22 @@
     </script>
     <script src="js/controllers/map.js"></script>
 
-</head>
-<body ng-app="starter">
+    <script type="text/javascript">
+        angular.bootstrap(document.body,['starter']);
+        document.addEventListener("deviceready", function () {
+            angular.bootstrap(document.body,['starter']);
+        });
+    </script>
 
-<ion-pane>
-    <ion-header-bar class="bar-positive">
-        <h1 class="title">Ionic Blank Starter</h1>
-    </ion-header-bar>
-    <map ng-controller="MapCtrl">
-        <div id="map-canvas"></div>
-    </map>
-</ion-pane>
+</head>
+<body>
+    <ion-pane>
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">Ionic Blank Starter</h1>
+        </ion-header-bar>
+        <map ng-controller="MapCtrl">
+            <div id="map-canvas"></div>
+        </map>
+    </ion-pane>
 </body>
 </html>
