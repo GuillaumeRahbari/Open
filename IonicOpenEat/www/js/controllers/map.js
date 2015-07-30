@@ -15,6 +15,7 @@ angular.module('starter')
          * Initialisation de la carte google map.
          */
         function initialize () {
+            alert('entrée');
 
             $ionicLoading.show({
                template:'<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
@@ -22,6 +23,7 @@ angular.module('starter')
 
             $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(
                 function (position){
+                    alert('localisation réussi');
                     var mapOptions = {
                         zoom: 18,
                         center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -33,12 +35,14 @@ angular.module('starter')
                     $ionicLoading.hide();
                 },
                 function (msg) {
+                    alert('localisation fail');
                     $ionicLoading.hide();
-                    console.log(msg);
+                    alert(msg.toString);
                 }
             );
-
         }
+        
+        initialize();
 
         /**
          * Chargement des magasins.
@@ -50,7 +54,5 @@ angular.module('starter')
                 console.log(msg);
             }
         );
-
-        google.maps.event.addDomListener(window, 'load', initialize);
 
     }]);
