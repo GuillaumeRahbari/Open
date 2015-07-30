@@ -16,7 +16,7 @@ angular.module('starter')
          */
         function initialize () {
 
-            $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: false}).then(
+            $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(
                 function (position){
                     var mapOptions = {
                         zoom: 18,
