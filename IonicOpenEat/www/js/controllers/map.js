@@ -8,7 +8,7 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MapCtrl', ['$scope', 'location',  function ($scope, location) {
+    .controller('MapCtrl', ['$scope', 'location', 'shops',  function ($scope, location, shops) {
 
         var map;
         /**
@@ -32,6 +32,17 @@ angular.module('starter')
             );
 
         }
+
+        /**
+         * Chargement des magasins.
+         */
+        shops.getShops().then(
+            function (data){
+                $scope.shops = data;
+            }, function (msg) {
+                console.log(msg);
+            }
+        );
 
         google.maps.event.addDomListener(window, 'load', initialize);
 
