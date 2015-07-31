@@ -29,7 +29,16 @@ exports.initialisationBDD = function() {
  * @param fail La fonction callback de fail.
  */
 exports.getShops = function(success, fail) {
-  database.read(connectionJSON, "SELECT * FROM shops", success, fail);
+  database.read(connectionJSON, "SELECT * FROM shops;", success, fail);
+};
+
+/**
+ * Fonction permettant de récupérer tous les magasins choisis.
+ * @param success La fonction callback de success.
+ * @param fail La fonction callback de fail.
+ */
+exports.getShopsChosen = function (success, fail) {
+  database.read(connectionJSON, "SELECT * FROM shops WHERE id_user=1;", success, fail);
 };
 
 /**

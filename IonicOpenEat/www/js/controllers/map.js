@@ -50,6 +50,7 @@ angular.module('starter')
         shops.getShops().then(
             function (data){
                 $scope.shops = data;
+                console.log(data);
             }, function (msg) {
                 console.log(msg);
             }

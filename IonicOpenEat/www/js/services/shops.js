@@ -16,7 +16,7 @@ angular.module('starter')
                 var deferred = $q.defer();
                 $http({
                     method : 'GET',
-                    url : constants.backendUrl + 'shops/',
+                    url : constants.backendUrl + 'users/',
                     headers: {'Content-Type': 'application/json'}
                 }).success(function (data){ // success de node js
                     if (data.status === 'success' ) { // success de la bdd

@@ -29,6 +29,25 @@ router.post('/users', function(req,res){
   database.shopsChosen(data, success, fail);
 });
 
+// La route pour '/users'
+router.get('/users', function (req, res) {
+  var success = function (objetJSON) {
+    var finalObject = {
+      status : 'success',
+      data: objetJSON
+    };
+    console.log(finalObject);
+    res.send(finalObject);
+  };
+
+  var fail = function(){
+    res.sendStatus(500);
+  };
+
+  database.getShopsChosen(success, fail);
+
+});
+
 // La route pour '/shops'
 router.get('/shops', function (req, res) {
   var success = function (objetJSON) {
