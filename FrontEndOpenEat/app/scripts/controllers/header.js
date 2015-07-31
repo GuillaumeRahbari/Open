@@ -8,16 +8,10 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('HeaderCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-
-    $scope.toggleNavside = function (){
-      angular.element('navside').toggleClass('clicked');
-    };
+  .controller('HeaderCtrl', ['$scope', function ($scope) {
 
     $scope.displayNavside =  function() {
-      if (!angular.element('navside').hasClass('clicked')) {
-        angular.element('navside').addClass('clicked');
-      }
+      angular.element('navside').addClass('clicked');
     };
 
   }]);

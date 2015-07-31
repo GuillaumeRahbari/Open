@@ -24,7 +24,6 @@ footer {
   -webkit-box-shadow: -0px 5px 5px 0px #656565;
   -o-box-shadow: 0px -5px 5px 0px #656565;
   box-shadow: 0px -5px 5px 0px #656565;
-  z-index: 2;
   padding-top: 20px;
   font-size: 15px;
 }
@@ -32,11 +31,10 @@ footer {
 navside {
   color: #005484;
   position: fixed;
-  left: -400px;
   top: 50px;
-  z-index: 0;
+  z-index: 1;
   height: inherit;
-  width: 33%;
+  width: 0;
   background-color: rgba(242, 245, 246, 1);
   -moz-box-shadow: 0px 0px 10px 1px #656565;
   -webkit-box-shadow: 0px 0px 10px 1px #656565;
@@ -54,13 +52,12 @@ navside {
 }
 
 .clicked {
-  z-index: 3;
+  width: 33%;
   transition: all 0.4s ease-in;
   -moz-transition: all 0.4s ease-in;
   -webkit-transition: all 0.4s ease-in;
-  -webkit-transform: translateX(400px);
-  -moz-transform: translateX(400px);
-  transform: translateX(400px);
+  -o-transition: all 0.4s ease-in;
+  -ms-transition: all 0.4s ease-in;
 }
 
 ::-webkit-scrollbar-track {
