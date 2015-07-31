@@ -41,7 +41,7 @@ angular.module('starter')
                 }
             );
         }
-        
+
         initialize();
 
         /**
