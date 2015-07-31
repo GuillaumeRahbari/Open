@@ -27,17 +27,12 @@
             src="https://maps.googleapis.com/maps/api/js?v=3.20&signed_in=true">
     </script>
     <script src="js/controllers/map.js"></script>
+    <script src="js/controllers/main.js"></script>
 
 </head>
 <body>
-    <ion-pane>
-        <ion-header-bar class="bar-positive">
-            <h1 class="title">Ionic Blank Starter</h1>
-        </ion-header-bar>
-        <map ng-controller="MapCtrl">
-            <div id="map-canvas"></div>
-        </map>
-    </ion-pane>
+
+    <ion-nav-view></ion-nav-view>
 
     <script type="text/javascript">
         angular.bootstrap(document.body,['starter']);

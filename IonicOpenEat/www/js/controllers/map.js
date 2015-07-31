@@ -15,15 +15,12 @@ angular.module('starter')
          * Initialisation de la carte google map.
          */
         function initialize () {
-            alert('entrée');
-
             $ionicLoading.show({
                template:'<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
             });
 
             $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(
                 function (position){
-                    alert('localisation réussi');
                     var mapOptions = {
                         zoom: 18,
                         center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -35,9 +32,8 @@ angular.module('starter')
                     $ionicLoading.hide();
                 },
                 function (msg) {
-                    alert('localisation fail');
                     $ionicLoading.hide();
-                    alert(msg.toString);
+                    console.log(msg);
                 }
             );
         }
@@ -49,11 +45,30 @@ angular.module('starter')
          */
         shops.getShops().then(
             function (data){
-                $scope.shops = data;
-                console.log(data);
+                createMarkersForShops(data);
             }, function (msg) {
                 console.log(msg);
             }
         );
+
+        /**
+         * Permet de récupérer les marqueurs
+         * @param shops
+         */
+        var createMarkersForShops = function (shops){
+            var markers = [];
+            for (var shop in shops) {
+                var marker = {
+                    position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
+                    title : shops[shop].description,
+                    zIndex : shops[shop].id
+                };
+                var gMarker = new google.maps.Marker(marker);
+                gMarker.setAnimation(google.maps.Animation.DROP);
+                gMarker.setMap(map);
+                markers.push(gMarker);
+            }
+            $scope.shopMarkers = markers;
+        };
 
     }]);
