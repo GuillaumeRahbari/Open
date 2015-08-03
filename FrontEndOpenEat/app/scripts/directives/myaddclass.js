@@ -20,7 +20,7 @@ angular.module('frontEndOpenEatApp')
       restrict: 'A',
       link: function (scope, element, attrs) {
         element.bind('click', function () {
-          angular.element(attrs.target).addClass(attrs.classToggle);
+          angular.element(attrs.myTarget).addClass(attrs.classToggle);
         })
       }
     };
