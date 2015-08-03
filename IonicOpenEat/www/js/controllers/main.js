@@ -8,7 +8,7 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MainCtrl', ['$scope', 'shops', function ($scope, shops) {
+    .controller('MainCtrl', ['$scope', 'shops', '$ionicPopup', function ($scope, shops, $ionicPopup) {
 
         $scope.checked; // Une variable permettant de voir si l'utilisateur a coché la case des magasins.
         var travelMode = 'Driving'; // Une variable retenant le mode courant de travel.
@@ -66,8 +66,19 @@ angular.module('starter')
             }
         );
 
+        /**
+         * Cette fonction permet de démarrer la naviguation.
+         * La naviguation ne se lance que dans le cas où l'utilisateur à coché l'affichage des magasins.
+         * Sinon une popup se lance le prévenant que les magasins n'ont pas été cochés.
+         */
         $scope.launchNavigation = function () {
+            if (!$scope.checked) {
+                $ionicPopup.alert({
+                    title: 'Erreur',
+                    template: 'Veuillez afficher les magasins'
+                });
+            }
             console.log($scope.travelMode());
-        }
+        };
 
     }]);

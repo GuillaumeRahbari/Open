@@ -52,9 +52,7 @@
 
                 <ion-item class="item-button-right">
                     Launch {{travelMode()}} Mode
-                    <!-- le ng-click indique qu'il ne lancera l'appel à la fonction launchNavigation() que si checked est vraie
-                    checked étant vrai ssi on a coché les magasins -->
-                    <button class="button button-positive" ng-click="checked && launchNavigation()">
+                    <button class="button button-positive" ng-click="launchNavigation()">
                         <i class="icon ion-loop"></i>
                     </button>
                 </ion-item>
