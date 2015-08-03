@@ -63,10 +63,23 @@ angular.module('starter')
                         content: currentMarker.title
                     });
 
-                    //attachListener(currentMarker, infowindow);
+                    attachListener(currentMarker, infowindow);
                     currentMarker.setMap(map);
                 }
             }
+        }
+
+        /**
+         * Permet d'ajouter un listener click sur les markers.
+         * @param marker
+         * @param infowindow
+         */
+        function attachListener (marker, infowindow){
+            google.maps.event.addListener( marker, 'click', function(){
+                // Dans le cas où on on veut afficher des infos sur le marker.
+                map.panTo(marker.getPosition());
+                infowindow.open(map,marker);
+            });
         }
 
     }]);
