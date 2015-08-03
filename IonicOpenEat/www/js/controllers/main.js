@@ -11,6 +11,21 @@ angular.module('starter')
     .controller('MainCtrl', ['$scope', 'shops', function ($scope, shops) {
 
         $scope.checked; // Une variable permettant de voir si l'utilisateur a coché la case des magasins.
+        var travelMode = 'Driving'; // Une variable retenant le mode courant de travel.
+
+        /**
+         * Une fonction getter-setter sur la variable travelMode.
+         * @param newTravelMode La nouvelle valeur de travelMode souhaitée.
+         * @returns
+         * <ul>
+         *     <li>Si arguments.length est égale à 0 (pas de paramètre) alors cela renvoie travelMode (équivalent à un get)</li>
+         *     <li>Si arguments.length est différent de 0 (il y a un paramètre) alors la fonction affecte la nouvelle valeur à travelMode
+         *     et renvoie travelMode (équivalent à un set suivi d'un get)</li>
+         * </ul>
+         */
+        $scope.travelMode = function (newTravelMode) {
+            return arguments.length ? (travelMode = newTravelMode) : travelMode;
+        };
 
         /**
          * Permet de faire apparaitre ou disparaitre les magasins de la carte.
@@ -27,13 +42,13 @@ angular.module('starter')
          * Permet de créer les marqueurs
          * @param shops
          */
-        var createMarkersForShops = function (shops){
+        var createMarkersForShops = function (shops) {
             var markers = [];
             for (var shop in shops) {
                 var marker = {
-                    position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
-                    title : shops[shop].description,
-                    zIndex : shops[shop].id
+                    position: new google.maps.LatLng(shops[shop].latitude, shops[shop].longitude),
+                    title: shops[shop].description,
+                    zIndex: shops[shop].id
                 };
                 markers.push(new google.maps.Marker(marker));
             }
@@ -44,11 +59,15 @@ angular.module('starter')
          * Chargement des magasins.
          */
         shops.getShops().then(
-            function (data){
+            function (data) {
                 $scope.shops = data;
             }, function (msg) {
                 console.log(msg);
             }
         );
+
+        $scope.launchNavigation = function () {
+            console.log($scope.travelMode());
+        }
 
     }]);

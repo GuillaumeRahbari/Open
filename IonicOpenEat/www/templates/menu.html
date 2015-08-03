@@ -26,6 +26,7 @@
 
         <ion-content>
             <ion-list>
+
                 <ion-item class="item-toggle">
                     Magasins choisis ?
                     <label class="toggle toggle-balanced">
@@ -35,6 +36,29 @@
                         </div>
                     </label>
                 </ion-item>
+
+                <ion-item>
+                    <label class="item-input item-select">
+                        <div class="input-label">
+                            Travel Mode
+                        </div>
+                        <select ng-model="travelMode" ng-model-options="{ getterSetter: true}">
+                            <option ng-selected="true">Driving</option>
+                            <option>Walking</option>
+                            <option>Bicycling</option>
+                        </select>
+                    </label>
+                </ion-item>
+
+                <ion-item class="item-button-right">
+                    Launch {{travelMode()}} Mode
+                    <!-- le ng-click indique qu'il ne lancera l'appel à la fonction launchNavigation() que si checked est vraie
+                    checked étant vrai ssi on a coché les magasins -->
+                    <button class="button button-positive" ng-click="checked && launchNavigation()">
+                        <i class="icon ion-loop"></i>
+                    </button>
+                </ion-item>
+
             </ion-list>
         </ion-content>
 
