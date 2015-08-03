@@ -21,21 +21,23 @@ angular.module('starter', ['ionic', 'ngCordova'])
 .config (function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-    .state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'MainCtrl'
-    })
+        .state('app', {
+            url: '/app',
+            abstract: true,
+            templateUrl: 'templates/menu.html',
+            controller: 'MainCtrl'
+        })
 
-    .state('app.map', {
-        url: '/map',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/map.html'
+        .state('app.map', {
+            url: '/map',
+            views: {
+                'mapContent': {
+                    templateUrl: 'templates/map.html',
+                    controller: 'MapCtrl'
+                }
             }
-        }
-    });
+        })
+    ;
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/map');

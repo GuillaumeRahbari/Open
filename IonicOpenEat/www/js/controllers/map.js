@@ -40,35 +40,33 @@ angular.module('starter')
 
         initialize();
 
-        /**
-         * Chargement des magasins.
-         */
-        shops.getShops().then(
-            function (data){
-                createMarkersForShops(data);
-            }, function (msg) {
-                console.log(msg);
-            }
-        );
+        // Permet de voir quand la variable est modifié.
+        $scope.$parent.$watch('checked', updateShopsMarkers);
 
         /**
-         * Permet de récupérer les marqueurs
-         * @param shops
+         * Permet d'update les markers des magasins choisis.
          */
-        var createMarkersForShops = function (shops){
-            var markers = [];
-            for (var shop in shops) {
-                var marker = {
-                    position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
-                    title : shops[shop].description,
-                    zIndex : shops[shop].id
-                };
-                var gMarker = new google.maps.Marker(marker);
-                gMarker.setAnimation(google.maps.Animation.DROP);
-                gMarker.setMap(map);
-                markers.push(gMarker);
+        function updateShopsMarkers (){
+            if (!$scope.$parent.checked){
+                for (var marker in $scope.$parent.shopMarkers){
+                    var currentMarker = $scope.$parent.shopMarkers[marker];
+                    currentMarker.setMap(null);
+                    google.maps.event.clearInstanceListeners(currentMarker, 'click');
+                }
             }
-            $scope.shopMarkers = markers;
-        };
+            else {
+                for (var marker in $scope.$parent.shopMarkers){
+                    var currentMarker = $scope.$parent.shopMarkers[marker];
+                    currentMarker.setAnimation(google.maps.Animation.DROP);
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: currentMarker.title
+                    });
+
+                    //attachListener(currentMarker, infowindow);
+                    currentMarker.setMap(map);
+                }
+            }
+        }
 
     }]);

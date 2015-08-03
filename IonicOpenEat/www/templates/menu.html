@@ -13,7 +13,7 @@
 
         </ion-nav-bar>
 
-        <ion-nav-view name="menuContent">
+        <ion-nav-view name="mapContent">
         </ion-nav-view>
 
     </ion-side-menu-content>
@@ -26,7 +26,15 @@
 
         <ion-content>
             <ion-list>
-                <ion-item>Coucou</ion-item>
+                <ion-item class="item-toggle">
+                    Magasins choisis ?
+                    <label class="toggle toggle-balanced">
+                        <input type="checkbox" ng-model="checked" ng-click="toggleShops(checked)">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </ion-item>
             </ion-list>
         </ion-content>
 
