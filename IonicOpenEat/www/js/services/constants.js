@@ -9,6 +9,6 @@
  */
 angular.module('starter')
     .constant('constants', {
-        backendUrl : 'http://localhost:3000/',
+        backendUrl: 'http://10.170.2.154:3000/', // dev
         markerBlue : '/images/marker-blue.png'
     });
