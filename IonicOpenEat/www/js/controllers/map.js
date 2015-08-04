@@ -11,6 +11,8 @@ angular.module('starter')
     .controller('MapCtrl', ['$scope', 'shops', '$cordovaGeolocation', '$ionicLoading',  function ($scope, shops, $cordovaGeolocation, $ionicLoading) {
 
         var map;
+        var directionsDisplay; // Permet d'aficher sur la carte.
+        var directionsService = new google.maps.DirectionsService(); // Permet de faire le calcul d'un itinéraire.
         /**
          * Initialisation de la carte google map.
          */
@@ -21,6 +23,7 @@ angular.module('starter')
 
             $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(
                 function (position){
+                    directionsDisplay = new google.maps.DirectionsRenderer();
                     var mapOptions = {
                         zoom: 18,
                         center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -28,6 +31,8 @@ angular.module('starter')
 
                     map = new google.maps.Map(document.getElementById('map-canvas'),
                         mapOptions);
+
+                    directionsDisplay.setMap(map);
 
                     $ionicLoading.hide();
                 },
@@ -81,5 +86,48 @@ angular.module('starter')
                 infowindow.open(map,marker);
             });
         }
+
+        /**
+         * Cette fonction permet de calculer un itinéraire avec des waypoints.
+         * Ici le point de départ et d'arrivé sont les mêmes (la position actuelle).
+         * Ici les waypoints sont les magasins choisis par l'utilisateur.
+         * Une fois le calcul de la route effectué, une mise à jour de la carte est faite pour visualiser l'itinéraire.
+         */
+        function calcRoute () {
+            $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true}).then(
+                function (position) {
+                    var currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var start = currentPosition;
+                    var end = currentPosition;
+                    var waypts = [];
+                    for (var marker in $scope.$parent.shopMarkers){
+                        var currentMarker = $scope.$parent.shopMarkers[marker];
+                        waypts.push({
+                            location: currentMarker.getPosition(),
+                            stopover: true
+                        });
+                    }
+                    var request = {
+                        origin: start,
+                        destination: end,
+                        waypoints: waypts,
+                        optimizeWaypoints: true,
+                        travelMode: google.maps.TravelMode[$scope.$parent.travelMode().toUpperCase()]
+                    };
+
+                    directionsService.route(request, function (response, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsDisplay.setDirections(response);
+                        }
+                    });
+                },
+                function (msg){
+                    console.log(msg);
+                }
+            );
+        }
+
+        // Ecoute de l'événement calculRoute. Si l'événement est déclenché alors on appelle la fonction calcRoute.
+        $scope.$on('calculRoute', calcRoute);
 
     }]);

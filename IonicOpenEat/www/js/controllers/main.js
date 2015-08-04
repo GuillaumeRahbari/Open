@@ -78,7 +78,9 @@ angular.module('starter')
                     template: 'Veuillez afficher les magasins'
                 });
             }
-            console.log($scope.travelMode());
+            else{
+                $scope.$broadcast('calculRoute');
+            }
         };
 
     }]);
