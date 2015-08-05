@@ -8,7 +8,7 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MainCtrl', ['$scope', 'shops', '$ionicPopup', function ($scope, shops, $ionicPopup) {
+    .controller('MainCtrl', ['$scope', 'shops', '$ionicPopup', '$cordovaAppAvailability', '$cordovaInAppBrowser', function ($scope, shops, $ionicPopup, $cordovaAppAvailability, $cordovaInAppBrowser) {
 
         $scope.checked; // Une variable permettant de voir si l'utilisateur a coché la case des magasins.
         var travelMode = 'Driving'; // Une variable retenant le mode courant de travel.
@@ -81,6 +81,20 @@ angular.module('starter')
             else{
                 $scope.$broadcast('calculRoute');
             }
+        };
+
+        $scope.launchApp = function () {
+            var scheme = 'com.google.android.apps.maps';
+
+            $cordovaAppAvailability.check(scheme).then(
+                function () {
+                    window.open('geo:37.7749,-122.4194', '_system', 'location=no');
+                },
+                function () {
+                    console.log('not available');
+                    alert('Please download google map');
+                }
+            );
         };
 
     }]);

@@ -27,6 +27,10 @@
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppAvailability\"><param name=\"ios-package\" value=\"AppAvailability\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -76,6 +80,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionicopeneat623282"
         },
         "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.ionicopeneat623282"
+        },
+        "cordova-plugin-appavailability": {
             "PACKAGE_NAME": "com.ionicframework.ionicopeneat623282"
         }
     },
