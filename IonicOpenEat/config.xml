@@ -41,4 +41,5 @@
   </platform>
   <plugin name="cordova-plugin-geolocation" spec="^1.0.1"/>
   <plugin name="cordova-plugin-appavailability" spec="https://github.com/ohh2ahh/AppAvailability.git"/>
+  <plugin name="cordova-plugin-inappbrowser" spec="^1.0.1"/>
 </widget>
