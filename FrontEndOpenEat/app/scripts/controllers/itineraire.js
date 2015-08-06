@@ -12,7 +12,7 @@ angular.module('frontEndOpenEatApp')
     $scope.$parent.selectShops = true;
 
     $scope.validateChosenShops = function () {
-      shops.createRoute($scope.selectedShops).then(
+      shops.postShopsChosen($scope.selectedShops).then(
         function (data) {
           console.log(data);
         },

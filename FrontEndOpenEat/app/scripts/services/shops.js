@@ -1,6 +1,17 @@
 'use strict';
 
 /**
+ * Ce service permet d'interroger le serveur sur tout ce qui concerne les magasins.
+ * On peut notamment récupérer la liste des magasins, et définir la liste des magasins choisis.
+ * Pour cela il faut inclure le service <i>shops</i>
+ *
+ * @example
+ * Voilà comment inclure le service :
+ * angular.module('monModule')
+ *  .controller('MonCtrl', ['shops', function (shops) {
+ * }]);
+ *
+ *
  * @ngdoc service
  * @name frontEndOpenEatApp.shops
  * @description
@@ -10,8 +21,46 @@
 angular.module('frontEndOpenEatApp')
   .factory('shops',['$q', '$http', 'constants', function ($q, $http, constants) {
 
-    // Public API here
     return {
+
+      /**
+       * Cette fonction permet de récupérer la liste des magasins présent en base de données.
+       * Cette fonction retourne une promesse.
+       *
+       * @example Voici comme utiliser cette fonction :
+       *  shops.getShops().then(
+       *    // Fonction callback lors du success
+       *    function (data) {
+       *      console.log(data);
+       *    },
+       *    // Fonction callback d'erreur.
+       *    function (msgErreur) {
+       *      console.log(msgErreur);
+       *    }
+       *  );
+       *
+       * La fonction callback de success renvoie un tableau contenant les magasins:
+       *  [ {
+       *      id: 2,
+       *      latitude: '48.889042',
+       *      longitude: '2.2883',
+       *      description: 'Resto 2',
+       *      id_user: null
+       *    }, {
+       *      id: 1,
+       *      latitude: '48.8879996',
+       *      longitude: '2.2882407',
+       *      description: 'Resto 1',
+       *      id_user: null
+       *    }
+       *  ]
+       *
+       * @returns {Function|promise} Retourne une promesse de réponse avec :
+       * <ul>
+       *     <li>soit un tableau de ce qu'on attend</li>
+       *     <li>soit un message d'erreurs</li>
+       * </ul>
+       */
       getShops: function () {
         var deferred = $q.defer();
         $http({
@@ -32,7 +81,28 @@ angular.module('frontEndOpenEatApp')
         return deferred.promise;
       },
 
-      createRoute : function (data) {
+      /**
+       * Cette fonction permet de définir la liste des magasins choisis et de les enregistrer en base de données.
+       * Cette fonction retourne une promesse.
+       *
+       * @example Voici comme utiliser cette fonction :
+       *  var shopsChosenArray = [ 1, 2, 3]
+       *  shops.postShopsChosen(shopsChosenArray).then(
+       *    // Fonction callback lors du success
+       *    function (data) {
+       *      console.log(data);
+       *    },
+       *    // Fonction callback d'erreur.
+       *    function (msgErreur) {
+       *      console.log(msgErreur);
+       *    }
+       *  );
+       *
+       * @param {Object} data - Un tableau contenant la liste des magasins choisis (leur id).
+       * @returns {Function|promise} Retourne une promesse de réponse.
+       */
+        // TODO : vérifier que la liste envoyée est bien une liste ne contenant que des integer pour les ids.
+      postShopsChosen : function (data) {
         var deferred = $q.defer();
         $http({
           method: 'POST',
