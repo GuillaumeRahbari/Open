@@ -41,15 +41,15 @@ angular.module('frontEndOpenEatApp')
      */
     function updateShopsMarkers (){
       if (!$scope.$parent.toggleMarkers){
-        for (var marker in $scope.$parent.shopMarkers){
-          var currentMarker = $scope.$parent.shopMarkers[marker];
+        $scope.$parent.shopMarkers.forEach(function (element) {
+          var currentMarker = element;
           currentMarker.setMap(null);
           google.maps.event.clearInstanceListeners(currentMarker, 'click');
-        }
+        });
       }
       else {
-        for (var marker in $scope.$parent.shopMarkers){
-          var currentMarker = $scope.$parent.shopMarkers[marker];
+        $scope.$parent.shopMarkers.forEach(function (element) {
+          var currentMarker = element;
           currentMarker.setAnimation(google.maps.Animation.DROP);
 
           var infowindow = new google.maps.InfoWindow({
@@ -58,7 +58,7 @@ angular.module('frontEndOpenEatApp')
 
           attachListener(currentMarker, infowindow);
           currentMarker.setMap(map);
-        }
+        });
       }
     }
 
@@ -78,7 +78,7 @@ angular.module('frontEndOpenEatApp')
         else {
           var id = marker.getZIndex();
           var index = $scope.$parent.selectedShops.indexOf(id);
-          if (index == -1){
+          if (index === -1){
             marker.setIcon(constants.markerBlue);
             $scope.$parent.selectedShops.push(id);
           }

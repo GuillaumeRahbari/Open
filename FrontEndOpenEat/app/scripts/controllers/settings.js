@@ -37,14 +37,14 @@ angular.module('frontEndOpenEatApp')
      */
     var createMarkersForShops = function (shops){
       var markers = [];
-      for (var shop in shops) {
+      shops.forEach(function (shop) {
         var marker = {
-          position : new google.maps.LatLng(shops[shop].latitude,shops[shop].longitude),
-          title : shops[shop].description,
-          zIndex : shops[shop].id
+          position: new google.maps.LatLng(shop.latitude, shop.longitude),
+          title: shop.description,
+          zIndex: shop.id
         };
         markers.push(new google.maps.Marker(marker));
-      }
+      });
       $scope.$parent.shopMarkers = markers;
     };
 

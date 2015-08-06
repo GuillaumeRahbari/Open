@@ -26,7 +26,7 @@ angular.module('frontEndOpenEatApp')
       link: function (scope, element, attrs) {
         element.bind('click', function () {
           angular.element(attrs.myTarget).addClass(attrs.classAdd);
-        })
+        });
       }
     };
   });

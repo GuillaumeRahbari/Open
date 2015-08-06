@@ -19,6 +19,6 @@ angular.module('frontEndOpenEatApp')
         function (msg) {
           console.log(msg);
         }
-      )
+      );
     };
   }]);
