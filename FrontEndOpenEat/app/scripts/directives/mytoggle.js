@@ -5,9 +5,14 @@
  * Utilisation :
  * <ul>
  *     <li>Placer la directive <i>my-toggle</i> sur l'élement B.</li>
- *     <li>Ajouter l'attribut <i>target="nomElement"</i> à l'élément B.</li>
+ *     <li>Ajouter l'attribut <i>my-target="nomElement"</i> à l'élément B.</li>
  *     <li>Ajouter l'attribut <i>class-toggle="nomClass" à l'élément B</i>.</li>
  * </ul>
+ *
+ * @example <UneBalise my-add-class my-target="#AnOtherBalise" class-toggle=".show"></UneBalise>
+ * <div id="AnOtherBalise">Hello World</div>
+ * Lorsque l'on clique sur la balise <i>UneBalise</i> cela va toggle la class ".show" sur l'élément
+ * ayant l'id <i>AnOtherBalise</i>
  *
  * @ngdoc directive
  * @name frontEndOpenEatApp.directive:myToggle
@@ -20,7 +25,7 @@ angular.module('frontEndOpenEatApp')
       restrict: 'A',
       link: function (scope, element, attrs) {
         element.bind('click', function () {
-          angular.element(attrs.target).toggleClass(attrs.classToggle);
+          angular.element(attrs.myTarget).toggleClass(attrs.classToggle);
         })
       }
     };
