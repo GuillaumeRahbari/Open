@@ -50,8 +50,14 @@ angular.module('starter')
 
             },
 
-            launchGoogleMapApp: function (jsonParam) {
-                window.open('geo:37.7749,-122.4194', '_system', 'location=no');
+            launchGoogleMapApp: function (jsonParams) {
+                var uri = url
+                    + jsonParams.position.latitude
+                    + ','
+                    + jsonParams.position.longitude
+                    + '&mode='
+                    + jsonParams.travelMode;
+                window.open(uri, '_system', 'location=no');
             }
         };
     }]);

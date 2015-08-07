@@ -99,12 +99,23 @@ angular.module('starter')
 
             googleMapApp.isGoogleMapAppAvailable().then(
                 function () {
-                    googleMapApp.launchGoogleMapApp();
+                    googleMapApp.launchGoogleMapApp(createJsonGoogleMap());
                 },
                 function (msg) {
                     alert(msg);
                 }
             );
         };
+
+        function createJsonGoogleMap() {
+            var jsonParams = {};
+            jsonParams.travelMode = $scope.travelMode().charAt(0).toLowerCase();
+            var firstShop = $scope.shops[0];
+            jsonParams.position = {
+                latitude: firstShop.latitude,
+                longitude: firstShop.longitude
+            };
+            return jsonParams;
+        }
 
     }]);

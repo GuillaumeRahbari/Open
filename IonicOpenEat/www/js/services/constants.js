@@ -18,7 +18,7 @@ angular.module('starter')
             },
             android : {
                 scheme: 'com.google.android.apps.maps',
-                url: 'google.navigation:'
+                url: 'google.navigation:q='
             }
         }
     });
