@@ -91,6 +91,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ionicopeneat623282"
+        },
+        "net.trentgardner.cordova.androidwear": {
+            "PACKAGE_NAME": "com.ionicframework.ionicopeneat623282"
         }
     },
     "dependent_plugins": {}
