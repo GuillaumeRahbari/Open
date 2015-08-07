@@ -27,7 +27,7 @@ angular.module('frontEndOpenEatApp')
        * Cette fonction permet de récupérer la liste des magasins présent en base de données.
        * Cette fonction retourne une promesse.
        *
-       * @example Voici comme utiliser cette fonction :
+       * @example Voici comment utiliser cette fonction :
        *  shops.getShops().then(
        *    // Fonction callback lors du success
        *    function (data) {
@@ -85,7 +85,7 @@ angular.module('frontEndOpenEatApp')
        * Cette fonction permet de définir la liste des magasins choisis et de les enregistrer en base de données.
        * Cette fonction retourne une promesse.
        *
-       * @example Voici comme utiliser cette fonction :
+       * @example Voici comment utiliser cette fonction :
        *  var shopsChosenArray = [ 1, 2, 3]
        *  shops.postShopsChosen(shopsChosenArray).then(
        *    // Fonction callback lors du success

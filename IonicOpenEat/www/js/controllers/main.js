@@ -89,7 +89,7 @@ angular.module('starter')
             }
         };
 
-        googleMapApp.defineGoogleMapUri();
+        googleMapApp.defineGoogleMapAppUri();
 
         /**
          * Cette fonction permet le lancement d'une application tierce depuis notre application.
