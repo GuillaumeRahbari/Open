@@ -8,7 +8,7 @@
  * Controller of the starter
  */
 angular.module('starter')
-    .controller('MainCtrl', ['$scope', 'shops', '$ionicPopup', 'uriapp', function ($scope, shops, $ionicPopup, uriapp) {
+    .controller('MainCtrl', ['$scope', 'shops', '$ionicPopup', 'googleMapApp', function ($scope, shops, $ionicPopup, googleMapApp) {
 
         var travelMode = 'Driving'; // Une variable retenant le mode courant utilisé pour voyager.
 
@@ -89,15 +89,17 @@ angular.module('starter')
             }
         };
 
+        googleMapApp.defineGoogleMapUri();
+
         /**
          * Cette fonction permet le lancement d'une application tierce depuis notre application.
          * @param {String} application - Le nom de l'application que l'on souhaite lancer.
          */
-        $scope.launchApp = function (application) {
+        $scope.launchGoogleMapApp = function () {
 
-            uriapp.getUriApp(application).then(
-                function (url) {
-                    window.open('geo:37.7749,-122.4194', '_system', 'location=no');
+            googleMapApp.isGoogleMapAppAvailable().then(
+                function () {
+                    googleMapApp.launchGoogleMapApp();
                 },
                 function (msg) {
                     alert(msg);
