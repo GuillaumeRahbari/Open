@@ -1,19 +1,25 @@
 /**
  * Created by Guillaume on 10/07/15.
- * Ce module permet de faire des requêtes vers la BDD.
+ * Ce module permet de faire des requêtes vers la base de données.
+ * Pour pouvoir utiliser ce module il suffit de l'inclure de la manière suivante :
+ * require('chemin vers ce fichier');
  */
 
 // Module PostgreSql
 var pg = require('pg');
 
 /**
- * Permet la connexion à une Base de Donnée.
- * @param infosConnectionJSON Les informations de connexion à la BDD au format JSON.
- * @param sqlRequest La requête SQL à effctuer.
+ * Cette fonction permet de se connecter à une base de donnée.
+ * Il suffit pour cela de donner les informations de connexion à la base de donnée sous le format suivant :
+ * <i>postgres://username:password@host:port/database</i>
+ * Et d'indiquer la requête SQL que l'on souhaite exécuter.
+ *
+ * @param {String} infosConnection - Les informations de connexion à la BDD.
+ * @param {String} sqlRequest - La requête SQL à effectuer.
  */
-exports.connect = function (infosConnectionJSON, sqlRequest) {
+exports.connect = function (infosConnection, sqlRequest) {
 
-  pg.connect(infosConnectionJSON, function (err, client, done){
+  pg.connect(infosConnection, function (err, client, done){
 
     // Gestion des erreurs.
     if(err){
@@ -32,17 +38,22 @@ exports.connect = function (infosConnectionJSON, sqlRequest) {
 };
 
 /**
- * Permet de lire dans une bdd.
- * @param infosConnectionJSON Les informations de connexion à la bdd.
- * @param sqlRequest La requête sql.
- * @param success La fonction de callback success.
- * @param fail La fonction de callback fail.
+ * Cette fonction permet de lire dans une base de donnée.
+ * Il suffit pour cela de donner les informations de connexion à la base de donnée sous le format suivant :
+ * <i>postgres://username:password@host:port/database</i>
+ * Et d'indiquer la requête SQL que l'on souhaite exécuter.
+ *
+ * @param {String} infosConnection - Les informations de connexion à la BDD.
+ * @param {String} sqlRequest - La requête SQL à effectuer.
+ * @param {function} success - La fonction callback de success.
+ * @param {function} fail - La fonction callback de fail.
  */
-exports.read = function (infosConnectionJSON, sqlRequest, success, fail){
+//TODO Améliorer les vérifications et la sécurité.
+exports.read = function (infosConnection, sqlRequest, success, fail){
 
   var results = [];
 
-  pg.connect(infosConnectionJSON, function (err, client, done){
+  pg.connect(infosConnection, function (err, client, done){
 
     // Gestion des erreurs
     if(err){
@@ -68,21 +79,26 @@ exports.read = function (infosConnectionJSON, sqlRequest, success, fail){
 };
 
 /**
- * Permet d'update dans la bdd
- * @param infosConnectionJSON Les informations de connexion à la bdd.
- * @param sqlRequest La requête sql.
- * @param success La fonction de callback success.
- * @param fail La fonction de callback fail.
+ * Cette fonction permet de mettre à jour certains champs dans une base de donnée.
+ * Il suffit pour cela de donner les informations de connexion à la base de donnée sous le format suivant :
+ * <i>postgres://username:password@host:port/database</i>
+ * Et d'indiquer la requête SQL que l'on souhaite exécuter.
+ *
+ * @param {String} infosConnection - Les informations de connexion à la BDD.
+ * @param {String} sqlRequest - La requête SQL à effectuer.
+ * @param {function} success - La fonction callback de success.
+ * @param {function} fail - La fonction callback de fail.
  */
-exports.update = function (infosConnectionJSON, sqlRequest, success, fail){
+exports.update = function (infosConnection, sqlRequest, success, fail){
 
-  pg.connect(infosConnectionJSON, function(err, client, done){
+  pg.connect(infosConnection, function(err, client, done){
     // Gestion des erreurs
     if(err){
       fail();
       console.log('error fetching client from pool', err);
     }
 
+    // On ferme la connexion et on appelle la fonction callback de success.
     client.query(sqlRequest).on('end', function () {
       client.end();
       success();
