@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WearOpenEat</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="intro_text">Long click to exit the map.</string>
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
+        AIzaSyDrC9Q9h9sNx4dBz8pzSoIrabIlqPCziH8
+    </string>
+</resources>
