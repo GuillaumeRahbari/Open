@@ -19,5 +19,6 @@
 angular.module('frontEndOpenEatApp')
   .constant('constants', {
     backendUrl : 'http://localhost:3000/', // L'adresse du serveur.
-    markerBlue : '/images/marker-blue.png' // L'image du marqueur bleu.
+    markerBlue : '/images/marker-blue.png', // L'image du marqueur bleu.
+    markerRed : '/images/marker-red.png' // L'image du marqueur rouge.
   });

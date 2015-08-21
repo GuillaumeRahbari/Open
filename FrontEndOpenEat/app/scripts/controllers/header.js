@@ -8,10 +8,6 @@
  * Controller of the frontEndOpenEatApp
  */
 angular.module('frontEndOpenEatApp')
-  .controller('HeaderCtrl', ['$scope', function ($scope) {
-
-    $scope.displayNavside =  function() {
-      angular.element('navside').addClass('clicked');
-    };
+  .controller('HeaderCtrl', [function () {
 
   }]);

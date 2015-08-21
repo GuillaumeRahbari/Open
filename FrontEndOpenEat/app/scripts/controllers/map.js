@@ -40,6 +40,7 @@ angular.module('frontEndOpenEatApp')
      * Permet d'update les markers des magasins.
      */
     function updateShopsMarkers (){
+      // Lorsque les magasins ne sont pas sélectionnés, on supprime tous les markers de la carte.
       if (!$scope.$parent.toggleMarkers){
         $scope.$parent.shopMarkers.forEach(function (element) {
           var currentMarker = element;
@@ -47,9 +48,11 @@ angular.module('frontEndOpenEatApp')
           google.maps.event.clearInstanceListeners(currentMarker, 'click');
         });
       }
+      // Lorsque les magasins sont sélectionnés, on ajoute un marker par magasin.
       else {
         $scope.$parent.shopMarkers.forEach(function (element) {
           var currentMarker = element;
+          currentMarker.setIcon(constants.markerRed);
           currentMarker.setAnimation(google.maps.Animation.DROP);
 
           var infowindow = new google.maps.InfoWindow({
@@ -83,7 +86,7 @@ angular.module('frontEndOpenEatApp')
             $scope.$parent.selectedShops.push(id);
           }
           else {
-            marker.setIcon();
+            marker.setIcon(constants.markerRed);
             $scope.$parent.selectedShops.splice(index,1);
           }
         }
