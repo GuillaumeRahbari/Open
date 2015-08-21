@@ -9,7 +9,7 @@
  */
 angular.module('starter')
     .constant('constants', {
-        backendUrl: 'http://10.170.2.96:3000/', // dev
+        backendUrl: 'http://10.170.2.76:3000/', // dev
         markerBlue : '/images/marker-blue.png',
         googleMap : {
             ios : {

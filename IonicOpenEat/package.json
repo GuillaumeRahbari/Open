@@ -24,5 +24,8 @@
     "cordova-plugin-appavailability",
     "cordova-plugin-inappbrowser"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
 }
