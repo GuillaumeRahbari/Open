@@ -39,8 +39,8 @@ angular.module('frontEndOpenEatApp')
       var markers = [];
       shops.forEach(function (shop) {
         var marker = {
-          position: new google.maps.LatLng(shop.latitude, shop.longitude),
-          title: shop.description,
+          position: new google.maps.LatLng(shop.lat, shop.lon),
+          title: shop.restName,
           zIndex: shop.id
         };
         markers.push(new google.maps.Marker(marker));
