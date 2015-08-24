@@ -53,15 +53,15 @@ angular.module('starter')
          */
         function updateShopsMarkers (){
             if (!$scope.$parent.checked){
-                for (var marker in $scope.$parent.shopMarkers){
-                    var currentMarker = $scope.$parent.shopMarkers[marker];
+                $scope.$parent.shopMarkers.forEach(function (marker) {
+                    var currentMarker = marker;
                     currentMarker.setMap(null);
                     google.maps.event.clearInstanceListeners(currentMarker, 'click');
-                }
+                });
             }
             else {
-                for (var marker in $scope.$parent.shopMarkers){
-                    var currentMarker = $scope.$parent.shopMarkers[marker];
+                $scope.$parent.shopMarkers.forEach(function (marker) {
+                    var currentMarker = marker;
                     currentMarker.setAnimation(google.maps.Animation.DROP);
 
                     var infowindow = new google.maps.InfoWindow({
@@ -70,7 +70,7 @@ angular.module('starter')
 
                     attachListener(currentMarker, infowindow);
                     currentMarker.setMap(map);
-                }
+                });
             }
         }
 
@@ -100,13 +100,13 @@ angular.module('starter')
                     var start = currentPosition;
                     var end = currentPosition;
                     var waypts = [];
-                    for (var marker in $scope.$parent.shopMarkers){
-                        var currentMarker = $scope.$parent.shopMarkers[marker];
+                    $scope.$parent.shopMarkers.forEach(function (marker) {
+                        var currentMarker = marker;
                         waypts.push({
                             location: currentMarker.getPosition(),
                             stopover: true
                         });
-                    }
+                    });
                     var request = {
                         origin: start,
                         destination: end,
