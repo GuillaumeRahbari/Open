@@ -12,9 +12,7 @@ var database = require('./../models/database');
 router.post('/users', function(req,res){
   console.log(req.body);
   var success = function () {
-    var finalObject = {
-      status : 'success'
-    };
+    var finalObject = 'success';
     console.log(finalObject);
     res.send(finalObject);
   };
@@ -47,12 +45,8 @@ router.get('/users', function (req, res) {
 // La route pour '/shops'
 router.get('/shops', function (req, res) {
   var success = function (objetJSON) {
-    var finalObject = {
-      status : 'success',
-      data: objetJSON
-    };
-    console.log(finalObject);
-    res.send(finalObject);
+    console.log(objetJSON);
+    res.send(objetJSON);
   };
 
   var fail = function(){
