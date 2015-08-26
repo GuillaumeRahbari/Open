@@ -32,12 +32,8 @@ router.post('/users', function(req,res){
 // La route pour '/users'
 router.get('/users', function (req, res) {
   var success = function (objetJSON) {
-    var finalObject = {
-      status : 'success',
-      data: objetJSON
-    };
-    console.log(finalObject);
-    res.send(finalObject);
+    console.log(objetJSON);
+    res.send(objetJSON);
   };
 
   var fail = function(){
