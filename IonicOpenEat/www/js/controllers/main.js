@@ -11,6 +11,7 @@ angular.module('starter')
     .controller('MainCtrl', ['$scope', 'shops', '$ionicPopup', 'googleMapApp', function ($scope, shops, $ionicPopup, googleMapApp) {
 
         var travelMode = 'Driving'; // Une variable retenant le mode courant utilisé pour voyager.
+        $scope.shopMarkers = [];
 
         /**
          * Une fonction getter-setter sur la variable travelMode.
@@ -112,10 +113,9 @@ angular.module('starter')
             jsonParams.travelMode = $scope.travelMode().charAt(0).toLowerCase();
             var firstShop = $scope.shops[0];
             jsonParams.position = {
-                latitude: firstShop.latitude,
-                longitude: firstShop.longitude
+                latitude: firstShop.lat,
+                longitude: firstShop.lon
             };
             return jsonParams;
         }
-
     }]);

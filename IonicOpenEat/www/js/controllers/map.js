@@ -100,8 +100,9 @@ angular.module('starter')
                     var start = currentPosition;
                     var end = currentPosition;
                     var waypts = [];
+                    var currentMarker;
                     $scope.$parent.shopMarkers.forEach(function (marker) {
-                        var currentMarker = marker;
+                        currentMarker = marker;
                         waypts.push({
                             location: currentMarker.getPosition(),
                             stopover: true

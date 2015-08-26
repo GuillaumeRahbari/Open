@@ -18,17 +18,20 @@ angular.module('starter')
                     method : 'GET',
                     url : constants.backendUrl + 'users/',
                     headers: {'Content-Type': 'application/json'}
-                }).success(function (data){ // success de node js
-                    if (data.status === 'success' ) { // success de la bdd
-                        deferred.resolve(data.data);
+                }).then(
+                    function (data) { // success de node js
+                        if (data.status === 200 ) { // success de la bdd
+                            deferred.resolve(data.data);
+                        }
+                        else { // erreur de la bdd
+                            deferred.reject('Erreur BDD : ' + data.status);
+                        }
+                    },
+                    function () { // erreur de node js.
+                        deferred.reject('Erreur de connexion !');
                     }
-                    else { // erreur de la bdd
-                        deferred.reject(data.data);
-                    }
+                );
 
-                }).error( function () { // erreur de node js.
-                    deferred.reject('Erreur de connexion !');
-                });
                 return deferred.promise;
             }
         };
