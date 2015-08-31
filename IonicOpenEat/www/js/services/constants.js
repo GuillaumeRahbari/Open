@@ -9,7 +9,7 @@
  */
 angular.module('starter')
     .constant('constants', {
-        backendUrl: 'http://10.170.2.167:3000/', // dev
+        backendUrl: 'http://10.170.2.174:3000/', // dev
         googleMap : {
             ios : {
                 scheme: 'comgooglemaps://',
