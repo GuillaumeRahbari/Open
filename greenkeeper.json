@@ -1,0 +1,15 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "BackEndOpenEat/package.json",
+        "FrontEndOpenEat/package.json",
+        "IonicOpenEat/package.json",
+        "IonicOpenEat/www/lib/angular-animate/package.json",
+        "IonicOpenEat/www/lib/angular-sanitize/package.json",
+        "IonicOpenEat/www/lib/angular/package.json",
+        "IonicOpenEat/www/lib/ngCordova/package.json"
+      ]
+    }
+  }
+}
